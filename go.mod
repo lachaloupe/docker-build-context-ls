@@ -1,4 +1,4 @@
-module github.com/lachaloupe/docker-context-ls
+module github.com/lachaloupe/docker-build-context-ls
 
 go 1.22.1
 

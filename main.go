@@ -12,7 +12,7 @@ import (
 
 func List(args []string, callback func(path string) error) (int, error) {
 	if len(args) != 2 {
-		return 2, fmt.Errorf("usage: docker-context-ls <context>")
+		return 2, fmt.Errorf("usage: docker-build-context-ls <dir>")
 	}
 
 	root := args[1]
@@ -21,7 +21,7 @@ func List(args []string, callback func(path string) error) (int, error) {
 		return 1, err
 	} else {
 		if !stat.IsDir() {
-			return 1, fmt.Errorf("%s: context is not a directory", root)
+			return 1, fmt.Errorf("%s: build context is not a directory", root)
 		}
 	}
 
@@ -41,7 +41,7 @@ func List(args []string, callback func(path string) error) (int, error) {
 		return 1, err
 	}
 
-	// walk the context directory
+	// walk the build context directory
 	err = filepath.WalkDir(root, func(path string, d fs.DirEntry, err error) error {
 		if err != nil {
 			return nil

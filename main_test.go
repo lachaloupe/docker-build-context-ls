@@ -9,13 +9,8 @@ import (
 	"testing"
 )
 
-func TestDockerContextListing(t *testing.T) {
-	tmp, err := os.MkdirTemp("", "docker-context-ls-test")
-	if err != nil {
-		t.Fatal(err)
-	}
-
-	defer os.RemoveAll(tmp)
+func TestDockerBuildContextListing(t *testing.T) {
+	tmp := t.TempDir()
 
 	dockerignore := []string{
 		"# comment should be ignored",
@@ -50,7 +45,7 @@ func TestDockerContextListing(t *testing.T) {
 			t.Fatal(err)
 		}
 
-		if err = os.WriteFile(path, []byte(content), 0644); err != nil {
+		if err := os.WriteFile(path, []byte(content), 0644); err != nil {
 			t.Fatal(err)
 		}
 	}
